@@ -1,4 +1,4 @@
-package com.revature.post_cards;
+package com.revature.documents;
 
 import lombok.Data;
 

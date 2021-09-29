@@ -1,4 +1,4 @@
-package com.revature.post_cards;
+package com.revature.documents;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
