@@ -1,19 +1,30 @@
 package com.revature.post_cards;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
 import com.revature.documents.Set;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.http.apache.ApacheHttpClient;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+
+import java.util.UUID;
 
 public class SetRepository {
 
-    private final DynamoDBMapper dbReader;
+    private final DynamoDbTable<Set> setTable;
 
     public SetRepository(){
-        dbReader = new DynamoDBMapper(AmazonDynamoDBClientBuilder.defaultClient());
+        DynamoDbClient db = DynamoDbClient.builder().httpClient(ApacheHttpClient.create()).build();
+        DynamoDbEnhancedClient dbClient = DynamoDbEnhancedClient.builder().dynamoDbClient(db).build();
+        setTable = dbClient.table("Sets", TableSchema.fromBean(Set.class));
     }
 
-    public void updateSet(Set updatedSet){
-        dbReader.save(updatedSet);
+    public Set addSet(Set newSet){
+        System.out.println("newSet " + newSet);
+        UUID uuid = UUID.randomUUID();
+        setTable.putItem(newSet);
+        System.out.println("SET WITH ID: " + newSet);
+        return newSet;
     }
-
 }

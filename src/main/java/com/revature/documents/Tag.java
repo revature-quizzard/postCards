@@ -1,17 +1,28 @@
 package com.revature.documents;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.Data;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
 @Data
-@DynamoDBTable(tableName = "Tags")
+@DynamoDbBean
 public class Tag {
 
-//  @DynamoDBHashKey
-    @DynamoDBAttribute
-    private String tag_name;
+    private String name;
+    private String color;
 
-    @DynamoDBAttribute
-    private String tag_color;
+    @DynamoDbPartitionKey
+    public String getName(){ return name; }
+
+    @DynamoDbAttribute("color")
+    public String getColor(){ return color; }
+
+    public Tag(String name){
+        this.name = name;
+    }
+
+    public Tag() {
+        super();
+    }
 }
