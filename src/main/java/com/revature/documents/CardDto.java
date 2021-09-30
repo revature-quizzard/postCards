@@ -7,18 +7,12 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbParti
 
 @Data
 @DynamoDbBean
-public class Card {
-    private String id;
+public class CardDto {
     private String setId;
     private String question;
     private String answer;
 
     @DynamoDbPartitionKey
-    public String getId() {
-        return id;
-    }
-
-    @DynamoDbAttribute("setId")
     public String getSetId() {
         return setId;
     }
