@@ -12,24 +12,25 @@ import java.util.List;
 public class Set {
 
     private String id;
-    private String set_name;
+    private String setName;
     private List<Tag> tags;
     private List<Card> cards;
     private String author;
-    private boolean is_public;
+    private boolean isPublic;
     private int views;
     private int plays;
     private int studies;
     private int favorites;
+
 
     @DynamoDbPartitionKey
     public String getId(){
         return id;
     }
 
-    @DynamoDbAttribute("name")
-    public String getName() {
-        return set_name;
+    @DynamoDbAttribute("setName")
+    public String getSetName() {
+        return setName;
     }
 
     @DynamoDbAttribute("tags")
@@ -47,9 +48,9 @@ public class Set {
         return author;
     }
 
-    @DynamoDbAttribute("is_public")
-    public boolean getIs_public() {
-        return is_public;
+    @DynamoDbAttribute("isPublic")
+    public boolean isPublic() {
+        return isPublic;
     }
 
     @DynamoDbAttribute("views")
