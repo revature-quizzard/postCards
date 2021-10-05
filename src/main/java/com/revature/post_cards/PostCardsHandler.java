@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.revature.documents.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class PostCardsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -28,6 +30,11 @@ public class PostCardsHandler implements RequestHandler<APIGatewayProxyRequestEv
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
         APIGatewayProxyResponseEvent responseEvent = new APIGatewayProxyResponseEvent();
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization");
+        headers.put("Access-Control-Allow-Origin", "*");
+        responseEvent.setHeaders(headers);
+
         LambdaLogger logger = context.getLogger();
         logger.log("Received Event: " + requestEvent);
 
