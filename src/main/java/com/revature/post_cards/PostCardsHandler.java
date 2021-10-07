@@ -24,7 +24,7 @@ public class PostCardsHandler implements RequestHandler<APIGatewayProxyRequestEv
     }
 
     public PostCardsHandler(SetRepository setRepo){
-        this.setRepo = new SetRepository();
+        this.setRepo = setRepo;
     }
 
     @Override

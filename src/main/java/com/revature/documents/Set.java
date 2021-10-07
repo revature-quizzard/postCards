@@ -1,5 +1,6 @@
 package com.revature.documents;
 
+import lombok.Builder;
 import lombok.Data;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Data
 @DynamoDbBean
+@Builder
 public class Set {
 
     private String id;
@@ -22,6 +24,22 @@ public class Set {
     private int studies;
     private int favorites;
 
+
+    public Set() {
+    }
+
+    public Set(String id, String setName, List<Tag> tags, List<Card> cards, String author, boolean isPublic, int views, int plays, int studies, int favorites) {
+        this.id = id;
+        this.setName = setName;
+        this.tags = tags;
+        this.cards = cards;
+        this.author = author;
+        this.isPublic = isPublic;
+        this.views = views;
+        this.plays = plays;
+        this.studies = studies;
+        this.favorites = favorites;
+    }
 
     @DynamoDbPartitionKey
     public String getId(){
