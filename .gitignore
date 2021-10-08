@@ -40,3 +40,7 @@ target/
 
 # Properties files
 *.properties
+
+/.idea/
+/post-card.iml
+/.aws-sam/

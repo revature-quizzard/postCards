@@ -5,7 +5,7 @@ Resources:
   postCardsFx:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: target/postCard-1.0-SNAPSHOT.jar
+      CodeUri: target/postCards-1.0-SNAPSHOT.jar
       Handler: com.revature.post_cards.PostCardsHandler
       Runtime: java8.al2
       Description: Java function
@@ -14,3 +14,4 @@ Resources:
       Tracing: Active
       Policies:
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
